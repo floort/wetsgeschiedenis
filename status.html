@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>Server Status</title>
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
+	</head>
+	<body>
+		<h1>Status</h1>
+		Total snapshots: {{.TotalSnapshots}} for {{len .BWBStats}} documents.<br/>
+		<table class="pure-table pure-table-horizontal">
+			<thead>
+			<tr>
+				<th>BWBID</th><th>Num snapshots</th><th>Titel</th>
+			</tr>
+			</thead>
+			<tbody>
+			{{range .BWBStats}} 
+			<tr><td><a href="/single/{{.ID}}">{{.ID}}</a></td><td>{{.NumSnapshots}}</td><td>{{.Title}}</td></tr>
+			{{end}}
+			</tbody>
+		</table>
+	</body>
+</html>

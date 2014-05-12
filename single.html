@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>{{.Title}}</title>
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
+		<style>
+			.l-box {
+				padding: 1em;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="home-menu pure-menu pure-menu-open pure-menu-horizontal">
+			<a class="pure-menu-heading" href>{{.Title}} - {{.PrintableTime}}</a>
+		</div>
+		<div class="pure-g-r">
+			<div class="pure-u-1-6">
+				<div class="pure-menu pure-menu-open">
+					<ul>
+						<li class="pure-menu-heading">Versions</li>
+						{{range .Versions}}<li{{if eq . $.PrintableTime}}class="pure-menu-selected"{{end}}><a href="/single/{{$.BWBID}}/{{.}}/">{{.}}</a></li>{{end}}
+						<li class="pure-menu-heading">Compare to</li>
+						{{range .Versions}}<li{{if eq . $.PrintableTime}}class="pure-menu-disabled"{{end}}><a href="/compare/{{$.BWBID}}/{{.}}/{{$.PrintableTime}}/">{{.}}</a></li>{{end}}
+					</ul>
+				</div>
+			</div>
+			<div class="pure-u-5-6">
+				<div class="l-box">
+					<h1>{{.ParsedContent.Intitule.Data}}</h1>
+					<p>{{.ParsedContent.Aanhef.Wij}}</p>
+					{{range .ParsedContent.Aanhef.Considerans}}<p>{{.}}</p>{{end}}
+					{{range .ParsedContent.Aanhef.Afkondiging}}<p>{{.}}</p>{{end}}
+					{{range .ParsedContent.Artikelen}}
+					<p>
+						<b>{{.Label}} {{.Nr}}:</b> {{.Tekst}}
+					</p>
+					{{end}}
+				</div>
+				{{.Content}}
+			</div>
+		</div>
+	</body>
+</html>
